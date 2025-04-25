@@ -251,36 +251,7 @@ contract PlayBall {
         return index_ball;
     }
 
-    // function play_ball_organization(uint32[6][] calldata nums, uint256[] calldata salts, address[] calldata addrs) public payable returns(uint256[] memory){
-    //     (uint256 epoch, uint256 starttime) = mycommittee.get_current_epoch_starttime();
-    //     require(epoch > 0, 'not start');
-    //     require(starttime > 0, 'epoch not start');
-    //     require(block.timestamp < BET_DIFF + starttime, 'time exceed');
-
-    //     require(nums.length >= 50 && addrs.length >=50 && salts.length >=50, 'length is too small');// at least 50 for organization
-    //     require((nums.length == addrs.length) && (addrs.length == salts.length) , 'nums, addrs and salts should same length'); 
-    //     uint256 should_pay = (BASE_BET * nums.length * 90 /100);//orgainization buy is 10% off
-    //     require(msg.value >= should_pay, "not enough pay");
-    //     uint256 total_money = msg.value;
-    //     distribute_money(total_money, msg.sender, 3);
-    //     (bool success_hashball, ) = (hashball_contract_address).call{value: total_money * 80 / 100}("");
-    //     if(!success_hashball){
-    //         revert('call failed');
-    //     }
- 
-    //     uint256[] memory indexs = new uint256[](nums.length);
-    //     bytes32 _hashball;
-    //     for(uint256 i = 0; i < nums.length; i++) {
-    //         // _hashball = keccak256(abi.encodePacked(nums[i], salts[i], addrs[i]));
-    //         _hashball = keccak256(abi.encodePacked(nums[i], salts[i]));
-    //         index_ball = index_ball + 1;
-    //         myHashBall.deal_play_ball_external(_hashball, 1, addrs[i], epoch, index_ball);
-    //         indexs[i] = index_ball;
-    //         myevent.emit_buyballorganization(indexs[i], addrs[i], msg.sender, epoch, 1, _hashball, block.timestamp);
-    //     }
-
-    //     return (indexs);
-    // }
+   
     function play_ball_organization(bytes32[] calldata _hashballs, address[] calldata addrs) public payable {
         (uint256 epoch, uint256 starttime) = mycommittee.get_current_epoch_starttime();
         require(epoch > 0, 'not start');
